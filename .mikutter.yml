@@ -1,0 +1,9 @@
+---
+slug: :scrap_nhk_news
+depends:
+  mikutter: 3.0.4
+  plugin: []
+version: '1.0'
+author: 
+name: scrap_nhk_news
+description: nhk_news で紹介される記事をスクラップする機能を追加するプラグイン。

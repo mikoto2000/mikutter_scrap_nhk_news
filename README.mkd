@@ -1,0 +1,52 @@
+scrap_nhk_news
+==============
+
+nhk_news で紹介される記事をスクラップする機能を追加するプラグイン。
+
+Usage:
+------
+
+このプラグインをインストールすると、mikutter に nhk news 記事のフィルタリング機能が追加されます。
+
+## 機能
+
+- nhk_news が紹介する記事本文を取得するフィルターを追加する
+- 引数として渡したメッセージが nhk_news のツイートであれば、メッセージ内の URL を基にニュース記事の本文を取得し、システムメッセージに埋め込んで返却する。
+- スクレイピングに失敗した場合は基のメッセージが返却される。
+
+### 使用例
+
+~~~ { .rb }
+modified_message = Plugin.filtering(:rebuild_message, original_message)
+
+# 投稿者が nhk_news であれば、ニュース本文が取得できているはず。
+modified_message.body
+~~~
+
+Install:
+--------
+
+以下のコマンドをターミナルで実行し、 mikutter を再起動してください。
+[PATH_TO_MIKUTTER] は、 mikutter をインストールしたパスに置き換えて実行してください。
+
+~~~ { .sh }
+$ mkdir -p ~/.mikutter/plugin
+$ cd ~/.mikutter/plugin
+$ git clone git://github.com/mikoto2000/mikutter_scrap_nhk_news.git scrap_nhk_news
+$ cd [PATH_TO_MIKUTTER]
+$ bundle install --path=vendor/bundle
+~~~
+
+License:
+--------
+
+Copyright (C) 2014 mikoto2000
+
+This software is released under the MIT License, see LICENSE
+
+このソフトウェアは MIT ライセンスの下で公開されています。 LICENSE を参照してください。
+
+Author:
+-------
+
+mikoto2000 <mikoto2000@gmail.com>
