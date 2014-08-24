@@ -27,7 +27,7 @@ Plugin.create(:scrap_nhk_news) do
                     :modified => message[:modified],
                     :system => true)
             rescue => e
-                p e.backtrace
+                p e.backtrace.join("\n")
             end
         end
         [dummy_message]
