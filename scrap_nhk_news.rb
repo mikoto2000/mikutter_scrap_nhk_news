@@ -2,12 +2,12 @@
 
 require "nokogiri"
 require "open-uri"
+require 'open_uri_redirections'
 
 Plugin.create(:scrap_nhk_news) do
-    @ELEMENT_TITLE = 'span.contentTitle'
-    @ELEMENT_MAIN = 'p#news_textbody,p#news_textmore'
-    @ELEMENT_ADD = 'div.news_add *'
-    @MESSAGE_SELECTORS = [@ELEMENT_MAIN, @ELEMENT_ADD]
+    @ELEMENT_TITLE = 'h1>span.contentTitle'
+    @ELEMENT_MAIN = 'section.module--content>div#news_textbody,section.module--content>div#news_textmore'
+    @MESSAGE_SELECTORS = [@ELEMENT_MAIN]
 
     filter_rebuild_message do |message|
         dummy_message = message
@@ -37,7 +37,7 @@ Plugin.create(:scrap_nhk_news) do
     # メッセージ詰め込み
     def get_contents(message)
         url = URI.extract(message.to_s)[0]
-        doc = Nokogiri::HTML(open(url))
+        doc = Nokogiri::HTML(open(url, :allow_redirections => :all))
 
         text = "■ #{doc.css(@ELEMENT_TITLE)[0].text}\n"
 
